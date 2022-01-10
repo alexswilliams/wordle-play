@@ -5,6 +5,8 @@
 - which letter pairs are the most common?
   - what words can you build from the most common?
 
+- which words have the lowest scrabble score?
+
 - which word give you the most green tiles when compared to all other words?
 - which word give you the most green and yellow tiles?
 

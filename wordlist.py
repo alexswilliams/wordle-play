@@ -6,5 +6,14 @@ from_leigh_mckenna = ["aahed", "aalii", "aargh", "aarti", "abaca", "abaci", "aba
 all_wordle_words = from_leigh_mckenna
 all_words = all_wordle_words
 
+def unique_letters(x):
+	if len(x) <= 1:
+		return True
+	tail = x[1:]
+	return x[0] not in tail and unique_letters(tail)
+
+def without_repeats(lst):
+	return list(filter(unique_letters, lst))
+
 # For the leigh mckenna wordlist, this produces 8705 words.
-without_repeated_chars = list(filter(lambda x: x[0] != x[1] and x[0] != x[2] and x[0] != x[3] and x[0] != x[4]  and x[1] != x[2] and x[1] != x[3] and x[1] != x[4]  and x[2] != x[3] and x[2] != x[4]  and x[3] != x[4], all_words))
+without_repeated_chars = without_repeats(all_words)

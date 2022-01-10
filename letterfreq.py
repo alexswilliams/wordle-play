@@ -2,7 +2,6 @@
 
 import string
 import wordlist
-from formatting import output_frequency_chart
 
 def count_letter_exists_freq():
 	letter_exists_frequency = []
@@ -16,8 +15,16 @@ def count_letter_exists_freq():
 	return letter_exists_frequency
 
 if __name__ == '__main__':
+	from formatting import output_frequency_chart
+	import pathlib
+	pathlib.Path('outputs/').mkdir(parents=True, exist_ok=True)
+	
 	print('Letter appears at least once in a word:')
 	output_frequency_chart(count_letter_exists_freq())
+
+	with open("outputs/letter-freq-contains.csv", "w") as f:
+		for result in count_letter_exists_freq():
+			print(f'{result[0]},{result[1]}', file=f)
 
 	# Letter appears at least once in a word:
 	#   5936 s
@@ -64,6 +71,10 @@ if __name__ == '__main__':
 	print('Total number of appearances of letter in the word list:')
 	output_frequency_chart(count_letter_total_freq())
 
+	with open("outputs/letter-freq-total.csv", "w") as f:
+		for result in count_letter_total_freq():
+			print(f'{result[0]},{result[1]}', file=f)
+
 	# Total number of appearances of letter in the word list:
 	#   6665 s
 	#   6662 e
@@ -108,7 +119,12 @@ def count_letter_pair_exists_freq():
 
 if __name__ == '__main__':
 	print('Total number of appearances of letter pairs in the word list:')
-	output_frequency_chart(count_letter_pair_exists_freq(), display_limit=10)
+	letter_pairs = count_letter_pair_exists_freq()
+	output_frequency_chart(letter_pairs, display_limit=10)
+
+	with open("outputs/letter-pairs.csv", "w") as f:
+		for result in letter_pairs:
+			print(f'{result[0]},{result[1]}', file=f)
 
 	# Total number of appearances of letter pairs in the word list:
 	#   860 es
@@ -155,17 +171,17 @@ if __name__ == '__main__':
 	#  'soars', 'soras', 'soree', 'sorer', 'sores', 'sorra']
 
 	print('Words made from only s, e, a, o, r that have no repeated characters:')
-	print(words_from_only('seaor', wordlist.without_repeated_chars))
+	print(words_from_only('seaor', dictionary=wordlist.without_repeated_chars))
 	print()
 	# ['aeros', 'arose', 'soare']
 
 	print('Words made from only s, e, a, o, r, i that have no repeated characters:')
-	print(words_from_only('seaori', wordlist.without_repeated_chars))
+	print(words_from_only('seaori', dictionary=wordlist.without_repeated_chars))
 	print()
 	# ['aeros', 'aesir', 'arise', 'arose', 'osier', 'raise', 'reais', 'serai', 'soare']
 
 	print('Words made from only s, e, a, o, r, i, l that have no repeated characters:')
-	print(words_from_only('seaoril', wordlist.without_repeated_chars))
+	print(words_from_only('seaoril', dictionary=wordlist.without_repeated_chars))
 	print()
 	# ['aeros', 'aesir', 'aisle', 'aloes', 'ariel', 'arils', 'arise', 'arles',
 	#  'arose', 'earls', 'eorls', 'laers', 'lairs', 'lares', 'laris', 'laser',
