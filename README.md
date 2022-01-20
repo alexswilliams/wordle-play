@@ -187,3 +187,7 @@ We could use a kernel function of f(*green*, *yellow*) = (*n* x *green* + *yello
 
 
 ## Word Elimination
+
+All the above methods have been at best solving proxies of the original goal - by finding common letters, we hope to try and maximise the number of eliminated words.  A more direct approach would be to actually simulate the first round of every possible game, and count the number of remaining words for each.
+
+// TODO :)
