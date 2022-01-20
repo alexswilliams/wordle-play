@@ -67,8 +67,18 @@ if __name__ == '__main__':
 	# p i o i d
 	# t u n n t
 	
-	filtered_words = list(filter(lambda word: (word[0] in candidates[0]) and (word[1] in candidates[1]) and (word[2] in candidates[2]) and (word[3] in candidates[3]) and (word[4] in candidates[4]), wordlist.all_words))
+	filtered_words = list(filter(lambda word: (word[0] in candidates[0]) and (word[1] in candidates[1]) and (word[2] in candidates[2]) and (word[3] in candidates[3]) and (word[4] in candidates[4]), wordlist.without_repeated_chars))
 	scrabble_ranked = scrabble.rank_by_scrabble_score(dictionary = filtered_words)
+
+
+
+if __name__ == '__main__':
+	print('Words made from most frequent 3 letters for each position, that contain no repeated letters:')
+	print(filtered_words)
+	print()
+	# ['baits', 'bares', 'beats', 'beaty', 'beray', 'boats', 'boite', 'boras', 'bores', 'borts',
+	#  'borty', 'cares', 'carte', 'carts', 'certs', 'certy', 'coate', 'coats', 'coits', 'cores',
+	#  'corey', 'seity']
 
 	print()
 	print('Lowest and highest scoring words containing only the most frequent letters for each position')
